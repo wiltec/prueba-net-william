@@ -1,0 +1,153 @@
+﻿@{
+    ViewBag.Title = "Ventas";
+}
+
+<br />
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h4 class="m-0 font-weight-bold">Ventas</h4>
+    </div>
+    <div class="card-body">
+        <div class="col-sm-12 text-right">
+            <button type="button" class="btn btn-primary" onclick="OpenModal();"><i class="fa fa-plus" aria-hidden="true"></i> </button>           
+        </div>
+        <br />
+
+        <div class="table-responsive" id="divTable">
+            <center><img src="~/Content/images/loading.gif" id="loading" style="display:none;" width="100px" /></center>
+        </div>
+    </div>
+</div>
+
+
+<div id="divTable">
+    <center><img src="~/Content/images/loading.gif" id="loading" style="display:none;" width="100px" /></center>
+</div>
+
+<div class="modal fade" id="salesModal" role="dialog" aria-labelledby="salesModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="salesModalLabel">Venta</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12" id="divAlert">
+                    </div>
+                </div>                
+                <form>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <select class="form-control" id="selectCategory">
+                                <option value="-1" selected="selected">--Selecciona una categoría--</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <select class="form-control" id="selectProduct">
+                                <option value="-1" selected="selected">--Selecciona un producto--</option>
+                            </select>
+                        </div>
+                        
+                    </div>                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3 mb-md-0">
+                                <input class="form-control" id="txtQuantity" type="number" placeholder="Precio" />
+                                <label for="txtQuantity">Cantidad</label>
+                            </div>
+                        </div>  
+                        <div class="col-md-6" style="margin-top:10px;">
+                            <button type="button" id="btnAdd" class="btn btn-primary" onclick="AddProductTemp();">Agregar producto</button>
+                        </div>                                             
+                    </div>
+
+                    <div class="row mb-12">
+                        <div class="col-md-12">
+                            <table class="table" id="tableProductTemp">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Cantidad</th>
+                                        <th scope="col">Producto</th>
+                                        <th scope="col">Código</th>
+                                        <th scope="col" style="visibility:hidden;"></th>
+                                        <th scope="col">Stock</th>
+                                        <th scope="col">Precio Unitario</th>
+                                        <th scope="col">Monto</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>                                                                        
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>
+                                        <th scope="col" style="visibility:hidden;"></th>
+                                        <th scope="col"></th>
+                                        <th scope="col">Total</th>
+                                        <td scope="col" id="tdTotal">0</td>
+                                        <td scope="col"></td>
+                                    </tr>                                    
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="CloseDialog($('#salesModal'));">Cancelar</button>
+                    <button type="button" id="btnAdd" class="btn btn-primary" onclick="AddSales();">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="salesLineModal" role="dialog" aria-labelledby="salesLineModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="salesLineModalLabel">Detalle Venta</h5>
+            </div>
+            <div class="modal-body">                
+                    <div class="row mb-12">
+                        <div class="col-md-12">
+                            <table class="table" id="tableSalesLine">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Cantidad</th>
+                                        <th scope="col">Producto</th>
+                                        <th scope="col">Código</th>                                        
+                                        <th scope="col">Precio Unitario</th>
+                                        <th scope="col">Monto</th>                                        
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                                <tfoot>
+                                    <tr>                                        
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>                                        
+                                        <th scope="col"></th>
+                                        <th scope="col">Total</th>
+                                        <td scope="col" id="tdDetailTotal">0</td>                                        
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="CloseDialog($('#salesLineModal'));">Salir</button>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link href="~/Content/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery.dataTables.js"></script>
+<script src="~/Scripts/dataTables.bootstrap4.min.js"></script>
+
+<script src="~/Scripts/Home/Index.js"></script>

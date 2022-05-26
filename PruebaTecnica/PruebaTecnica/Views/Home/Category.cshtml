@@ -1,0 +1,120 @@
+﻿@{
+    ViewBag.Title = "Category";
+}
+
+<br />
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h4 class="m-0 font-weight-bold">Categorías</h4>
+    </div>
+    <div class="card-body">
+        <div class="col-sm-12 text-right">
+            <button type="button" class="btn btn-primary" onclick="OpenModal();"><i class="fa fa-plus" aria-hidden="true"></i> </button>
+        </div>
+        <br />
+
+        <div class="table-responsive" id="divTable">
+            <center><img src="~/Content/images/loading.gif" id="loading" style="display:none;" width="100px" /></center>
+        </div>
+    </div>
+</div>
+
+
+<div  id="divTable">
+    <center><img src="~/Content/images/loading.gif" id="loading" style="display:none;" width="100px" /></center>
+</div>
+
+<div class="modal fade" id="categoryModal" role="dialog" aria-labelledby="categoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="categoryModalLabel">Agregar Categoría</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12" id="divAlert">
+                    </div>
+                </div>
+
+                <form>
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <div class="form-floating mb-3 mb-md-0">
+                                <input class="form-control" id="txtCategory" type="text" placeholder="Nombre categoría" />
+                                <label for="txtCategory">Nombre categoría</label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="CloseDialog($('#categoryModal'));">Cancelar</button>
+                    <button type="button" id="btnAdd" class="btn btn-primary" onclick="AddCategory();">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="EditcategoryModal" role="dialog" aria-labelledby="EditcategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="EditcategoryModalLabel">Editar Categoría</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12" id="divAlertE">
+                    </div>
+                </div>
+
+                <form>
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <div class="form-floating mb-3 mb-md-0">
+                                <input id="idCategoryE" type="hidden">
+                                <input class="form-control" id="txtCategoryE" type="text" placeholder="Nombre categoría" />
+                                <label for="txtCategoryE">Nombre categoría</label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="CloseDialog($('#EditcategoryModal'));">Cancelar</button>
+                    <button type="button" id="btnEdit" class="btn btn-primary" onclick="EditCategory();">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="DeletecategoryModal" role="dialog" aria-labelledby="DeletecategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="DeletecategoryModalLabel">Eliminar Categoría</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12" id="divAlertD">
+                    </div>
+                </div>
+                <input id="idCategoryD" type="hidden">
+                ¿Desea eliminar el registro con id <label id="lblDelete"></label> ?
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="CloseDialog($('#DeletecategoryModal'));">Cancelar</button>
+                    <button type="button" id="btnDelete" class="btn btn-primary" onclick="DeleteCategory();">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link href="~/Content/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery.dataTables.js"></script>
+<script src="~/Scripts/dataTables.bootstrap4.min.js"></script>
+
+<script src="~/Scripts/Home/Category.js"></script>
